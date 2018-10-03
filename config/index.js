@@ -7,9 +7,9 @@ module.exports = {
 		autoOpenBrowser: true,
 		host: 'localhost',
 		port: 8080,
-		publicPath: './'
+		outputPath: path.join(__dirname, '../dist')
 	},
 	build: {
-		assetsRoot: path.resolve(__dirname, '../dist'),
+
 	}
 }

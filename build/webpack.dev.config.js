@@ -1,3 +1,5 @@
+const path = require('path');
+const webpack = require('webpack');
 const merge = require('webpack-merge');
 const config = require('../config');
 const baseWebpackConfig = require('./webpak.base.config');
@@ -11,7 +13,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 	mode: 'development',
 	devtool: config.dev.devtool,
 	devServer: {
-		contentBase: config.build.assetsRoot,
+		// contentBase: path.join(__dirname, '../dist'),
+		stats: 'minimal',
 		hot: config.dev.hot,
 		host: HOST || config.dev.host,
 		port: PORT || config.dev.port,
@@ -22,7 +25,8 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 			filename: 'index.html',
 			template: './index.html'
 		}),
-		new VueLoaderPlugin()
+		new VueLoaderPlugin(),
+		new webpack.HotModuleReplacementPlugin()
 	]
 })
 

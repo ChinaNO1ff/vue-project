@@ -8,14 +8,13 @@ module.exports = {
 		main: './src/main.js'
 	},
 	output: {
-		filename: '[name]_[chunkhash:8].js',
-		path: config.build.assetsRoot,
-		publicPath: config.dev.publicPath,
+		filename: '[name]_[hash:8].js',
+		path: config.dev.outputPath,
 	},
 	resolve: {
 		extensions: ['.js', '.vue', 'json'],
 		alias: {
-			'@': path.resolve(__dirname, '../src')
+			'@': path.resolve(__dirname, '../src/components/')
 		}
 	},
 	module: {
