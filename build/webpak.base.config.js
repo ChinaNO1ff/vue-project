@@ -1,6 +1,6 @@
 const path = require('path');
 const config = require('../config');
-const ExtractTextPlugin = require('extract-text-webpack-plugin');
+const  MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	context: path.resolve(__dirname, '../'),
@@ -21,34 +21,27 @@ module.exports = {
 		rules: [
 			{
 				test: /\.vue$/,
-				loader: 'vue-loader',
-				options: {
-					loaders: {
-                        css: ExtractTextPlugin.extract({
-                            use: 'css-loader',
-                            fallback: 'vue-style-loader'
-                        })
-                    }
+				use: {
+					loader: 'vue-loader',
 				}
 			},
 			{
 				test: /\.js$/,
-				loader: 'babel-loader',
+				use: [ 'babel-loader' ],
 				exclude: /node_modules/
 			},
 			{
                 test: /\.css$/,
-                use: ExtractTextPlugin.extract({
-                    use: 'css-loader',
-                    fallback: 'style-loader'
-                })
+                use: [
+                	MiniCssExtractPlugin.loader,
+                	'css-loader'
+                ]
             }
 		]
 	},
 	plugins: [
-        new ExtractTextPlugin({
-            filename: '[name]_[hash:8].css',
-            allChunks: true
-        })
+		new MiniCssExtractPlugin({
+			filename: '[name]_[hash:8].css',
+		})
     ]
 }

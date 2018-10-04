@@ -1,7 +1,7 @@
 <template>
-	<div class="root">
-		<v-btn></v-btn>
-		<span>{{ msg }}</span>
+	<div>
+		<v-btn v-on:increase="getTotal" v-on:reduce="getTotal"></v-btn>
+		<span>{{ total }}</span>
 	</div>
 </template>
 
@@ -14,7 +14,12 @@
 		},
 		data() {
 			return {
-				msg: 'hello vue'
+				total: 0
+			}
+		},
+		methods: {
+			getTotal(total) {
+				this.total = total;
 			}
 		}
 	}

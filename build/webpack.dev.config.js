@@ -13,7 +13,7 @@ const devWebpackConfig = merge(baseWebpackConfig, {
 	mode: 'development',
 	devtool: config.dev.devtool,
 	devServer: {
-		// contentBase: path.join(__dirname, '../dist'),
+		contentBase: path.join(__dirname, '../dist'),
 		stats: 'minimal',
 		hot: config.dev.hot,
 		host: HOST || config.dev.host,

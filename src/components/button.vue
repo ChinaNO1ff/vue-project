@@ -1,6 +1,7 @@
 <template>
 	<div class="button">
-		<button @click="add">add</button>
+		<button @click="increase">increase</button>
+		<button @click="reduce">reduce</button>
 		<span>{{ count }}</span>
 	</div>
 </template>
@@ -9,12 +10,17 @@
 	export default {
 		data() {
 			return {
-				count: 0
+				count: 7
 			}
 		},
 		methods: {
-			add() {
+			increase() {
 				this.count ++;
+				this.$emit('increase', this.count);
+			},
+			reduce() {
+				this.count --;
+				this.$emit('reduce', this.count);
 			}
 		}
 	}
