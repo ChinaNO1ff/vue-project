@@ -1,6 +1,6 @@
 const path = require('path');
 const config = require('../config');
-const  MiniCssExtractPlugin = require('mini-css-extract-plugin');
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
 	context: path.resolve(__dirname, '../'),
@@ -21,15 +21,25 @@ module.exports = {
 		rules: [
 			{
 				test: /\.vue$/,
-				use: {
-					loader: 'vue-loader',
-				}
+				use: [ 
+					'vue-loader',
+					{
+						loader: 'iview-loader',
+						options: {
+							prefix: false
+						}
+					}
+				]
 			},
 			{
 				test: /\.js$/,
 				use: [ 'babel-loader' ],
 				exclude: /node_modules/
 			},
+			{
+                test: /\.(woff?|eot|ttf|otf|svg|woff2)(\?.*)?$/,
+                use: [ 'url-loader' ]
+            },
 			{
                 test: /\.css$/,
                 use: [
@@ -41,7 +51,8 @@ module.exports = {
 	},
 	plugins: [
 		new MiniCssExtractPlugin({
-			filename: '[name]_[hash:8].css',
-		})
+			filename: '[name]_[hash].css',
+			chunkFilename: '[id].css'
+		}),
     ]
 }
