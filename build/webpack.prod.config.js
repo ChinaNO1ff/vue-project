@@ -1,5 +1,5 @@
 const merge = require('webpack-merge');
-const baseWebpackConfig = require('./webpak.base.config');
+const baseWebpackConfig = require('./webpack.base.config');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const VueLoaderPlugin = require('vue-loader/lib/plugin');
 
